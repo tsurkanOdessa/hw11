@@ -5,7 +5,7 @@ class SubTaskInline(admin.TabularInline):
     model = SubTask
     extra = 1
 
-@admin.action(description='Отметить как Done')
+@admin.action(description='Mark as Done')
 def mark_as_done(modeladmin, request, queryset):
     queryset.update(is_done=True)
 
