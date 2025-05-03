@@ -1,8 +1,10 @@
 from django.http import Http404
 from rest_framework import generics, status
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.db.models import Count, Q
+from django.db.models import Count
 from django.utils import timezone
 from django.shortcuts import render
 
@@ -11,6 +13,7 @@ from .serializers.tasks_serializer import TaskSerializer
 from .serializers.category_serializer import CategoryCreateSerializer, CategorySerializer
 from .models import SubTask
 from .serializers.subtasks_serializer import SubTaskCreateSerializer
+
 
 # Template View
 def task_list_view(request):
@@ -117,3 +120,53 @@ class SubTaskDetailUpdateDeleteView(APIView):
         subtask = self.get_object(pk)
         subtask.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class TaskByWeekdayListView(ListAPIView):
+    serializer_class = TaskSerializer
+
+    def get_queryset(self):
+        queryset = SubTask.objects.select_related('task').all().order_by('-created_at')
+        task_title = self.request.query_params.get('task_title')
+        is_done = self.request.query_params.get('is_done')
+
+        if task_title:
+            queryset = queryset.filter(task__title__icontains=task_title)
+
+        if is_done is not None:
+            if is_done.lower() in ['true', '1']:
+                queryset = queryset.filter(is_done=True)
+            elif is_done.lower() in ['false', '0']:
+                queryset = queryset.filter(is_done=False)
+
+        return queryset
+
+class SubTaskPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 10
+
+class SubTaskListView(generics.ListAPIView):
+    serializer_class = SubTaskCreateSerializer
+    queryset = SubTask.objects.all().order_by('-created_at')
+    pagination_class = SubTaskPagination
+
+
+class FilteredSubTaskListView(generics.ListAPIView):
+    serializer_class = SubTaskCreateSerializer
+    pagination_class = SubTaskPagination
+
+    def get_queryset(self):
+        queryset = SubTask.objects.select_related('task').all().order_by('-created_at')
+        task_title = self.request.query_params.get('task_title')
+        is_done = self.request.query_params.get('is_done')
+
+        if task_title:
+            queryset = queryset.filter(task__title__icontains=task_title)
+
+        if is_done is not None:
+            if is_done.lower() in ['true', '1']:
+                queryset = queryset.filter(is_done=True)
+            elif is_done.lower() in ['false', '0']:
+                queryset = queryset.filter(is_done=False)
+
+        return queryset

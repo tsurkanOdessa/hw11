@@ -8,8 +8,14 @@ from .views import (
     CategoryListCreateView,
     CategoryRetrieveUpdateDestroyView,
     SubTaskListCreateView,
-    SubTaskDetailUpdateDeleteView
+    SubTaskDetailUpdateDeleteView,
+    TaskByWeekdayListView,
+    SubTaskListView,
+    FilteredSubTaskListView
 )
+
+
+
 urlpatterns = [
     #Templates
     path('', task_list_view, name='task_list'),
@@ -23,6 +29,9 @@ urlpatterns = [
     path('api/categories/<int:pk>/', CategoryRetrieveUpdateDestroyView.as_view(), name='category-detail'),
     path('api/subtasks/', SubTaskListCreateView.as_view(), name='subtask-list-create'),
     path('api/subtasks/<int:pk>/', SubTaskDetailUpdateDeleteView.as_view(), name='subtask-detail'),
+    path('api/tasks/by-weekday/', TaskByWeekdayListView.as_view(), name='tasks-by-weekday'),
+    path('api/subtasks/', SubTaskListView.as_view(), name='subtasks-list'),
+    path('api/subtasks/filtered/', FilteredSubTaskListView.as_view(), name='filtered-subtasks'),
 
     path('categories/', CategoryListCreateView.as_view(), name='category-list'),
     path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyView.as_view(), name='category-detail'),
