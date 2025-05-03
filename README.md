@@ -5,22 +5,26 @@
 
 ```
 taskmanager/
-├── core/                   # Настройки Django
+├── core/                   # настройки Django
+│   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── ...
-├── tasks/                  # Приложение задач
+├── tasks/                  # приложение задач
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models/
-│   │   ├── __init__.py     # Импорт моделей
-│   │   ├── task.py         # Модель Task
-│   │   └── subtask.py      # Модель SubTask
+│   │   ├── __init__.py     # импорт всех моделей
+│   │   ├── task.py         # модель Task
+│   │   └── subtask.py      # модель SubTask
+│   ├── templates
+│   │   ├── task_list.html  # шаблон главной страницы
 │   ├── migrations/
 │   ├── views.py
+│   ├── urls.py
 │   └── ...
 ├── manage.py
-└── venv/
+└── venv/   
 ```
 
 # Установка и запуск проекта
