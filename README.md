@@ -62,6 +62,8 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+# Работа с github
+
 ```
 # создаем файл taskmanager/.gitignore
 
@@ -72,4 +74,22 @@ git branch -M main
 git remote add origin https://github.com/tsurkanOdessa/hw11.git
 ```
 
+# Альтернативная админка Grappelli
 
+```
+1. Добавить в INSTALLED_APPS в settings.py перед django.contrib.admin
+'grappelli',
+
+2. В core/urls.py:
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),
+    path('admin/', admin.site.urls),
+]
+
+3.
+pip install django-grappelli
+
+```
