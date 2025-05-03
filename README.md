@@ -97,3 +97,21 @@ urlpatterns = [
 pip install django-grappelli
 
 ```
+установка и настройка Django REST Framework
+
+```
+pip install djangorestframework
+
+Добавить в INSTALLED_APPS в settings.py
+INSTALLED_APPS = [
+    ...
+    'tasks',
+    'rest_framework', # Добавим строку
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+```
