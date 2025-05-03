@@ -21,6 +21,7 @@ class Task(models.Model):
         blank=True,
         related_name='tasks'
     )
+    weekday = models.IntegerField(editable=False, null=True, blank=True)
 
     def __str__(self):
         return self.title
