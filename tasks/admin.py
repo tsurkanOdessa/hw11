@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task, SubTask
+from .models import Task, SubTask, Category
 
 class SubTaskInline(admin.TabularInline):
     model = SubTask
@@ -18,3 +18,9 @@ class TaskAdmin(admin.ModelAdmin):
 class SubTaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'task', 'is_done')
     actions = [mark_as_done]
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+    readonly_fields = ('created_at',)

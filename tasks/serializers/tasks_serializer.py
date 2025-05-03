@@ -3,6 +3,7 @@ from django.utils import timezone
 from ..models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Task
         fields = ['id', 'title', 'description', 'status', 'deadline', 'created_at']

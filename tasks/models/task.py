@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from .category import Category
 
 STATUS_CHOICES = [
     ('new', 'New'),
@@ -13,6 +14,13 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
     deadline = models.DateTimeField(null=True, blank=True)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='tasks'
+    )
 
     def __str__(self):
         return self.title
