@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from taskmanager.tasks.views import task_list
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
