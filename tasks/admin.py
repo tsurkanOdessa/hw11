@@ -12,7 +12,7 @@ def mark_as_done(modeladmin, request, queryset):
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     inlines = [SubTaskInline]
-    list_display = ('short_title', 'created_at')
+    list_display = ('short_title', 'created_at')  # 'short_title' — кастомный метод
 
 @admin.register(SubTask)
 class SubTaskAdmin(admin.ModelAdmin):

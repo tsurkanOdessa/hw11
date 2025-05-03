@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список задач</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .task { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+        .done { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+    <h1>Список задач</h1>
+    {% for task in tasks %}
+        <div class="task">
+            <h2>{{ task.title }}</h2>
+            <ul>
+                {% for sub in task.subtasks.all %}
+                    <li class="{% if sub.is_done %}done{% endif %}">{{ sub.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</body>
+</html>
