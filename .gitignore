@@ -1,0 +1,85 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+*.db
+db.sqlite3
+media/
+staticfiles/
+local_settings.py
+settings_local.py
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+!*/migrations/__init__.py
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Test/coverage
+.coverage
+.tox/
+htmlcov/
+.coverage.*
+.cache/
+pytest_cache/
+nosetests.xml
+testdb.sqlite3
+
+# Build
+build/
+dist/
+*.egg-info/
+*.eggs/
+
+# MyPy & Pyright
+.mypy_cache/
+.pyright/
+
+# dotenv
+.env
+.env.*
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Gunicorn
+gunicorn.pid
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+*.out
+*.err
+
+# Pid files
+*.pid
