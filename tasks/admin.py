@@ -8,3 +8,8 @@ class SubTaskInline(admin.TabularInline):
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     inlines = [SubTaskInline]
+    list_display = ['short_title']
+
+    def short_title(self, obj):
+        return obj.title if len(obj.title) <= 10 else obj.title[:10] + '...'
+    short_title.short_description = "Название"
