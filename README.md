@@ -97,7 +97,7 @@ urlpatterns = [
 pip install django-grappelli
 
 ```
-установка и настройка Django REST Framework
+# установка и настройка Django REST Framework
 
 ```
 pip install djangorestframework

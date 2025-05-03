@@ -68,6 +68,10 @@
             color: #dc3545;
             margin-left: 5px;
         }
+        .nav-link.active {
+            font-weight: bold;
+            color: #0d6efd !important;
+        }
     </style>
 </head>
 <body>
@@ -89,16 +93,16 @@
             <h4>Filters</h4>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">All Tasks</a>
+                    <a class="nav-link {% if not request.GET.status %}active{% endif %}" href="?">All Tasks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">New</a>
+                    <a class="nav-link {% if request.GET.status == 'new' %}active{% endif %}" href="?status=new">New</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">In Progress</a>
+                    <a class="nav-link {% if request.GET.status == 'in_progress' %}active{% endif %}" href="?status=in_progress">In Progress</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Completed</a>
+                    <a class="nav-link {% if request.GET.status == 'completed' %}active{% endif %}" href="?status=completed">Completed</a>
                 </li>
             </ul>
         </div>
